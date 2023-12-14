@@ -1,11 +1,13 @@
 #! /usr/bin/env node
+
 import "dotenv/config";
 import readline from "node:readline";
 import OpenAI from "openai";
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.OPENAI_API_KEY,
 });
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -15,6 +17,7 @@ const newMessage = async (history, message) => {
   const results = await openai.chat.completions.create({
     model: "gpt-3.5-turbo",
     messages: [...history, message],
+    temperature: 1,
   });
 
   return results.choices[0].message;
@@ -27,7 +30,7 @@ const chat = () => {
     {
       role: "system",
       content:
-        "You are an AI assistant answer the qeustions of the best of your ability, by the way my name is diego",
+        "You are an AI assistant answer the questions to the best of your ability",
     },
   ];
   const start = () => {
@@ -40,7 +43,7 @@ const chat = () => {
       const userMessage = formatMessage(userInput);
       const response = await newMessage(history, userMessage);
       history.push(userMessage, response);
-      console.log(`\n\nAI: ${response.content}`);
+      console.log(`\n\nGPT: ${response.content}`);
       start();
     });
   };
