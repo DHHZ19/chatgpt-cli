@@ -50,5 +50,5 @@ const chat = () => {
   start();
 };
 
-console.log("Chatbot initialized. Type 'exit' to end the chat.");
+console.log("ChatGPT initialized. Type 'exit' to end the chat.");
 chat();
