@@ -1,3 +1,4 @@
+<h1>ChatGPT CLI</h1>
 Dependencies:
 
 * NodeJS (node can be installed with [NVM](https://github.com/nvm-sh/nvm) this must be done before continuing any further)
